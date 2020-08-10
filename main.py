@@ -1,9 +1,16 @@
 from bs4 import BeautifulSoup as soup
 from urllib.request import urlopen as uReq
+import inputFilters
+
+userFilters = inputFilters.getInput()
 
 # Specified property website URL: Daft.ie
-property_url = "https://www.daft.ie/dublin-city/apartments-for-rent/?pt_id=1&cc_id=ct1&ignored_agents%5B0%5D=1551&s" \
-               "%5Bignored_agents%5D%5B0%5D=1551&s%5Bsort_by%5D=date&s%5Bsort_type%5D=d "
+property_url = "https://www.daft.ie/dublin-city/" + userFilters[0] + "/?s%5Bignored_agents%5D%5B0%5D=1551&s%5Bsort_by%5D=date&s%5Bsort_type%5D=d"
+
+userFilters.pop(0)
+
+for uFilter in userFilters:
+    property_url = property_url + uFilter
 
 # Connects to URL and grabs HTML
 uClient = uReq(property_url)

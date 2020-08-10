@@ -1,0 +1,20 @@
+# Original
+https://www.daft.ie/dublin-city/apartments-for-rent/
+?pt_id=1&cc_id=ct1&ignored_agents%5B0%5D=1551&s%5Bignored_agents%5D%5B0%5D=1551&s%5Bsort_by%5D=date&s%5Bsort_type%5D=d
+
+# Any property
+https://www.daft.ie/dublin-city/residential-property-for-rent/?s%5Bignored_agents%5D%5B0%5D=1551&s%5Bsort_by%5D=date&s%5Bsort_type%5D=d
+
+# Apartment to rent
+https://www.daft.ie/dublin-city/apartments-for-rent/?s%5Bignored_agents%5D%5B0%5D=1551&s%5Bsort_by%5D=date&s%5Bsort_type%5D=d
+
+# House to rent
+https://www.daft.ie/dublin-city/houses-for-rent/?s%5Bignored_agents%5D%5B0%5D=1551&s%5Bsort_by%5D=date&s%5Bsort_type%5D=d
+
+# Apartment & Max Price = 2000
+https://www.daft.ie/dublin-city/apartments-for-rent/
+?s%5Bmxp%5D=2000&s%5Bignored_agents%5D%5B0%5D=1551&s%5Bsort_by%5D=date&s%5Bsort_type%5D=d
+
+# Apartment & Max Price 2000 & Min Beds = 2
+https://www.daft.ie/dublin-city/apartments-for-rent/
+?s%5Bmxp%5D=2000&s%5Bmnb%5D=2&s%5Bignored_agents%5D%5B0%5D=1551&s%5Bsort_by%5D=date&s%5Bsort_type%5D=d
