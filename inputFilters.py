@@ -13,19 +13,19 @@ def getInput():
 
     min_price = input("Enter minimum price: ")
     if len(min_price) > 0:
-        filters.append("&s%5Bmnp%5D=" + min_price)
+        filters.append("&s%5Bmnp%5D=" + min_price.strip())
 
     max_price = input("Enter maximum price: ")
     if len(max_price) > 0:
-        filters.append("&s%5Bmxp%5D=" + max_price)
+        filters.append("&s%5Bmxp%5D=" + max_price.strip())
 
     min_bed = input("Enter minimum beds: ")
     if len(min_bed) > 0:
-        filters.append("&s%5Bmnb%5D=" + min_bed)
+        filters.append("&s%5Bmnb%5D=" + min_bed.strip())
 
     max_bed = input("Enter maximum beds: ")
     if len(max_bed) > 0:
-        filters.append("&s%5Bmxb%5D=" + max_bed)
+        filters.append("&s%5Bmxb%5D=" + max_bed.strip())
 
     if len(filters) > 0:
         for uFilter in filters:
