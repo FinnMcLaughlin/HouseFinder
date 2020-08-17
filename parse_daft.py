@@ -15,18 +15,35 @@ def parse_html(filters):
     # Stores all property item containers
     prop_containers = page_soup.findAll("div", {"class": "PropertyCardContainer__container"})
 
+    # Array to store dictionaries containing information on each property
+    allProperties = []
+
     # Extracts the relevant information (link to property URL, property address, price attributes etc.)
     # Prints them to the console
     for container in prop_containers:
-        prop_link = "https://www.daft.ie/" + container.a["href"]
-        prop_address = container.findAll("div", {"class": "PropertyInformationCommonStyles__addressCopy calculate-truncation-plugin"})[0].text.strip()
-        prop_price = container.findAll("div", {"class": "PropertyInformationCommonStyles__propertyPrice"})[0].text.strip()
-        prop_attributes = container.findAll("div", {"class": "QuickPropertyDetails__iconContainer"})
 
+        prop_link = "https://www.daft.ie/" + container.a["href"]
         print(prop_link)
+
+        prop_address = container.findAll("div", {"class": "PropertyInformationCommonStyles__addressCopy calculate-truncation-plugin"})[0].text.strip()
         print(prop_address)
+
+        prop_price = container.findAll("div", {"class": "PropertyInformationCommonStyles__propertyPrice"})[0].text.strip()
         print(prop_price)
+
+        prop_attributes = container.findAll("div", {"class": "QuickPropertyDetails__iconContainer"})
         for attr in prop_attributes:
             print(attr.img["alt"])
 
+        propertyInfo = {
+            "link": prop_link,
+            "address": prop_address,
+            "price": prop_price,
+            "attr": prop_attributes
+        }
+
+        allProperties.append(propertyInfo)
+
         print("\n")
+
+    return allProperties

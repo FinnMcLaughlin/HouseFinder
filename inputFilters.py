@@ -33,3 +33,29 @@ def getInput():
 
     print("\n\n")
     return filters
+
+
+def getInput(params):
+    filters = ["apartments-for-rent"]
+
+    if params["min_price"] != "None":
+        print("min_price: " + params["min_price"])
+        filters.append("&s%5Bmnp%5D=" + params["min_price"])
+
+    if params["max_price"] != "None":
+        print("max_price: " + params["max_price"])
+        filters.append("&s%5Bmxp%5D=" + params["max_price"])
+
+    if params["min_beds"] != "None":
+        print("min_beds: " + params["min_beds"])
+        filters.append("&s%5Bmnb%5D=" + params["min_beds"])
+
+    if params["max_beds"] != "None":
+        print("max_beds: " + params["max_beds"])
+        filters.append("&s%5Bmxb%5D=" + params["max_beds"])
+
+    if len(filters) > 0:
+        for uFilter in filters:
+            print(uFilter)
+
+    return filters
