@@ -1,4 +1,5 @@
 import parse_daft
+import parse_rent
 import inputFilters
 from tkinter import *
 from tkinter.ttk import *
@@ -17,7 +18,19 @@ def getValues():
         "max_beds": max_bedrooms_menu.get()
     }
 
-    showResults(parse_daft.parse_html(inputFilters.getInput(params)))
+    results = parse_rent.parse_html(inputFilters.getInput(params))
+
+    results += parse_daft.parse_html(inputFilters.getInput(params))
+
+    for property in results:
+        print(property["link"] + "\n" + property["address"] + "\n" + property["price"])
+
+        for attr in property["attr"]:
+            print(attr)
+
+        print("\n")
+
+    showResults(results)
 
 
 def clearScreen():
@@ -44,7 +57,7 @@ def showResults(results):
 
         attrIndex = rowNo+4
         for attr in res_prop["attr"]:
-            Label(root, text=attr.img["alt"]).grid(row=attrIndex, column=0)
+            Label(root, text=attr).grid(row=attrIndex, column=0)
             attrIndex += 1
 
         rowNo = attrIndex

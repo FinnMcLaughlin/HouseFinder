@@ -1,10 +1,11 @@
 from bs4 import BeautifulSoup as soup
-from urllib.request import urlopen as uReq
+from urllib.request import urlopen as uReq, Request
 
 
 def parseHTML(property_url):
     # Connects to URL and grabs HTML
-    uClient = uReq(property_url)
+    request = Request(property_url, headers={'User-Agent': 'Mozilla/5.0'})
+    uClient = uReq(request)
     page_html = uClient.read()
     uClient.close()
 

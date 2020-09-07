@@ -23,17 +23,19 @@ def parse_html(filters):
     for container in prop_containers:
 
         prop_link = "https://www.daft.ie/" + container.a["href"]
-        print(prop_link)
+        #print(prop_link)
 
         prop_address = container.findAll("div", {"class": "PropertyInformationCommonStyles__addressCopy calculate-truncation-plugin"})[0].text.strip()
-        print(prop_address)
+        #print(prop_address)
 
         prop_price = container.findAll("div", {"class": "PropertyInformationCommonStyles__propertyPrice"})[0].text.strip()
-        print(prop_price)
+        #print(prop_price)
 
-        prop_attributes = container.findAll("div", {"class": "QuickPropertyDetails__iconContainer"})
-        for attr in prop_attributes:
-            print(attr.img["alt"])
+        prop_attr = container.findAll("div", {"class": "QuickPropertyDetails__iconContainer"})
+        prop_attributes = []
+
+        for attr in prop_attr:
+            prop_attributes.append(attr.img["alt"])
 
         propertyInfo = {
             "link": prop_link,
@@ -44,6 +46,6 @@ def parse_html(filters):
 
         allProperties.append(propertyInfo)
 
-        print("\n")
+        #print("\n")
 
     return allProperties
