@@ -1,5 +1,6 @@
 import parse_daft
 import parse_rent
+import checkLastResult
 from tkinter import *
 from tkinter.ttk import *
 
@@ -17,7 +18,9 @@ def getValues():
         "max_beds": max_bedrooms_menu.get()
     }
 
-    results = parse_rent.parse_html(parse_rent.inputFilters(params))
+    checkLastResult.checkLast("third", "rent.ie")
+
+    '''results = parse_rent.parse_html(parse_rent.inputFilters(params))
 
     results += parse_daft.parse_html(parse_daft.inputFilters(params))
 
@@ -29,7 +32,7 @@ def getValues():
 
         print("\n")
 
-    showResults(results)
+    showResults(results)'''
 
 
 def clearScreen():

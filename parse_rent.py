@@ -2,7 +2,10 @@ import html_parser
 
 
 def parse_html(url_parameters):
-    # Specified property website URL: Daft.ie
+
+    foundResult = False
+
+    # Specified property website URL: Rent.ie
     property_url = "https://www.rent.ie/"
 
     for parameter in url_parameters:

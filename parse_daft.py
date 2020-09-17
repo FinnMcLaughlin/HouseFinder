@@ -55,19 +55,19 @@ def inputFilters(parameters):
     url_parameters = ["dublin-city/", "apartments-for-rent/", "?s%5Bignored_agents%5D%5B0%5D=1551&s%5Bsort_by%5D=date&s%5Bsort_type%5D=d"]
 
     if parameters["min_price"] != "None":
-        print("min_price: " + parameters["min_price"])
+        # print("min_price: " + parameters["min_price"])
         url_parameters.append("&s%5Bmnp%5D=" + parameters["min_price"])
 
     if parameters["max_price"] != "None":
-        print("max_price: " + parameters["max_price"])
+        # print("max_price: " + parameters["max_price"])
         url_parameters.append("&s%5Bmxp%5D=" + parameters["max_price"])
 
     if parameters["min_beds"] != "None":
-        print("min_beds: " + parameters["min_beds"])
+        # print("min_beds: " + parameters["min_beds"])
         url_parameters.append("&s%5Bmnb%5D=" + parameters["min_beds"])
 
     if parameters["max_beds"] != "None":
-        print("max_beds: " + parameters["max_beds"])
+        # print("max_beds: " + parameters["max_beds"])
         url_parameters.append("&s%5Bmxb%5D=" + parameters["max_beds"])
 
     return url_parameters
