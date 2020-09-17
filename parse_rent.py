@@ -1,14 +1,12 @@
 import html_parser
 
 
-def parse_html(filters):
+def parse_html(url_parameters):
     # Specified property website URL: Daft.ie
-    property_url = "https://www.rent.ie/houses-to-let/renting_dublin/"
+    property_url = "https://www.rent.ie/"
 
-    filters.pop(0)
-
-    for uFilter in filters:
-        property_url = property_url + uFilter
+    for parameter in url_parameters:
+        property_url += parameter
 
     page_soup = html_parser.parseHTML(property_url)
 
@@ -43,3 +41,31 @@ def parse_html(filters):
         allProperties.append(propertyInfo)
 
     return allProperties
+
+
+'''
+Rent.ie does not have a minimum / maximum number of bedrooms
+Update code to do a web crawl as many times needed within the 
+range of min / max bedrooms for rent.ie 
+'''
+
+def inputFilters(parameters):
+    # Update to allow for choices of letting options
+    # Update to allow for location changing
+    url_params = ["houses-to-let/", "renting_dubllin/"]
+
+    if parameters["min_beds"] != "None":
+        url_params.append(parameters["min_beds"] + "_beds/")
+
+    if parameters["min_price"] != "None":
+        url_params.append("rent_" + parameters["min_price"])
+
+    if parameters["max_price"] != "None":
+        if parameters["min_price"] != "None":
+            url_params.append("-" + parameters["max_price"] + "/")
+        else:
+            url_params.append(url_params + "rent_0-" + parameters["max_price"] + "/")
+    else:
+        url_params.append("/")
+
+    return url_params

@@ -3,9 +3,7 @@ import html_parser
 
 def parse_html(filters):
     # Specified property website URL: Daft.ie
-    property_url = "https://www.daft.ie/dublin-city/" + filters[0] + "/?s%5Bignored_agents%5D%5B0%5D=1551&s%5Bsort_by%5D=date&s%5Bsort_type%5D=d"
-
-    filters.pop(0)
+    property_url = "https://www.daft.ie/"
 
     for uFilter in filters:
         property_url = property_url + uFilter
@@ -23,13 +21,13 @@ def parse_html(filters):
     for container in prop_containers:
 
         prop_link = "https://www.daft.ie/" + container.a["href"]
-        #print(prop_link)
+        # print(prop_link)
 
         prop_address = container.findAll("div", {"class": "PropertyInformationCommonStyles__addressCopy calculate-truncation-plugin"})[0].text.strip()
-        #print(prop_address)
+        # print(prop_address)
 
         prop_price = container.findAll("div", {"class": "PropertyInformationCommonStyles__propertyPrice"})[0].text.strip()
-        #print(prop_price)
+        # print(prop_price)
 
         prop_attr = container.findAll("div", {"class": "QuickPropertyDetails__iconContainer"})
         prop_attributes = []
@@ -46,6 +44,30 @@ def parse_html(filters):
 
         allProperties.append(propertyInfo)
 
-        #print("\n")
+        # print("\n")
 
     return allProperties
+
+def inputFilters(parameters):
+    # Update to allow for choices of letting options
+    # Update to allow for location changing
+    # 3rd entry is necessary in the url to show newest results
+    url_parameters = ["dublin-city/", "apartments-for-rent/", "?s%5Bignored_agents%5D%5B0%5D=1551&s%5Bsort_by%5D=date&s%5Bsort_type%5D=d"]
+
+    if parameters["min_price"] != "None":
+        print("min_price: " + parameters["min_price"])
+        url_parameters.append("&s%5Bmnp%5D=" + parameters["min_price"])
+
+    if parameters["max_price"] != "None":
+        print("max_price: " + parameters["max_price"])
+        url_parameters.append("&s%5Bmxp%5D=" + parameters["max_price"])
+
+    if parameters["min_beds"] != "None":
+        print("min_beds: " + parameters["min_beds"])
+        url_parameters.append("&s%5Bmnb%5D=" + parameters["min_beds"])
+
+    if parameters["max_beds"] != "None":
+        print("max_beds: " + parameters["max_beds"])
+        url_parameters.append("&s%5Bmxb%5D=" + parameters["max_beds"])
+
+    return url_parameters

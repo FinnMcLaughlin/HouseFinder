@@ -1,7 +1,0 @@
-- Connect to Daft.ie and perform basic web scraping x
-- Add basic user input x
-- Filter property results before web scraping x
-- Add GUI to allow for easier filter input
-- Automate to check for new properties when they are added
-- Notify when new property added
-- Implement as to work with both Daft.ie and Rent.ie

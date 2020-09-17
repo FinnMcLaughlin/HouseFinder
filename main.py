@@ -1,6 +1,5 @@
 import parse_daft
 import parse_rent
-import inputFilters
 from tkinter import *
 from tkinter.ttk import *
 
@@ -18,9 +17,9 @@ def getValues():
         "max_beds": max_bedrooms_menu.get()
     }
 
-    results = parse_rent.parse_html(inputFilters.getInput(params))
+    results = parse_rent.parse_html(parse_rent.inputFilters(params))
 
-    results += parse_daft.parse_html(inputFilters.getInput(params))
+    results += parse_daft.parse_html(parse_daft.inputFilters(params))
 
     for property in results:
         print(property["link"] + "\n" + property["address"] + "\n" + property["price"])
