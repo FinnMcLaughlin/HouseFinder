@@ -1,32 +1,56 @@
 
 def checkLast(url, website):
-    latestPropertyFile = openFile()
+    latestPropertyFile = openFileRead()
 
     content = latestPropertyFile.readlines()
+    counter = 0
+    found = False
 
     for line in content:
         if website in line:
             if url in line:
+                found = True
                 break
             else:
-                break
-                #updateLast(url, website, line, latestPropertyFile)
+                print("not found")
+                #updateLast(url, content, latestPropertyFile, counter)
+
+        counter += 1
 
     closeFile(latestPropertyFile)
+    return found
 
 
-def updateLast(url, website, content, file):
-    return 0
-    #oldURL = content.split(": ")[1]
-    #print(oldURL)
-    #print(url)
-    #updatedFile = content.replace(oldURL, url)
-    #print(updatedFile)
-    #file.write(updatedFile)
+def updateLast(url, website):
+    fileRead = openFileRead()
 
+    newFile = []
 
-def openFile():
+    for line in fileRead:
+        if line.__contains__(website):
+            oldURL = line.split(": ")[1]
+            newFile.append(line.replace(oldURL, url))
+        else:
+            newFile.append(line)
+
+        newFile.append("\n")
+
+    fileRead.close()
+    fileWrite = openFileWrite()
+
+    print(newFile)
+
+    for line in newFile:
+        fileWrite.write(line)
+
+    closeFile(fileWrite)
+
+def openFileRead():
     file = open("latest_recorded_property.txt", "r+")
+    return file
+
+def openFileWrite():
+    file = open("latest_recorded_property.txt", "w+")
     return file
 
 def closeFile(file):

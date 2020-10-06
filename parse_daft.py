@@ -36,6 +36,7 @@ def parse_html(filters):
             prop_attributes.append(attr.img["alt"])
 
         propertyInfo = {
+            "website": "daft.ie",
             "link": prop_link,
             "address": prop_address,
             "price": prop_price,

@@ -11,6 +11,11 @@ max_bedrooms = 5
 
 
 def getValues():
+    up_to_date_Rent = False
+    newest_prop_stored_Rent = False
+    up_to_date_Daft = False
+    newest_prop_stored_Daft = False
+
     params = {
         "min_price": min_price_menu.get(),
         "max_price": max_price_menu.get(),
@@ -18,21 +23,44 @@ def getValues():
         "max_beds": max_bedrooms_menu.get()
     }
 
-    checkLastResult.checkLast("third", "rent.ie")
+    #checkLastResult.checkLast("third", "rent.ie")
 
-    '''results = parse_rent.parse_html(parse_rent.inputFilters(params))
+    results = parse_rent.parse_html(parse_rent.inputFilters(params))
 
-    results += parse_daft.parse_html(parse_daft.inputFilters(params))
+    #results += parse_daft.parse_html(parse_daft.inputFilters(params))
 
     for property in results:
-        print(property["link"] + "\n" + property["address"] + "\n" + property["price"])
+        print("Property")
+        if property["website"] == "rent.ie":
+            print("Rent")
+            if not up_to_date_Rent:
+                up_to_date_Rent = checkLastResult.checkLast(property["link"], property["website"])
 
-        for attr in property["attr"]:
-            print(attr)
+            if not newest_prop_stored_Rent:
+                newest_prop_Rent = property
+                newest_prop_stored_Rent = True
+
+        if property["website"] == "daft.ie":
+            print("Daft")
+            if not up_to_date_Daft:
+                up_to_date_Daft = checkLastResult.checkLast(property["link"], property["website"])
+
+            if not newest_prop_stored_Daft:
+                newest_prop_Daft = property
+                newest_prop_stored_Daft = True
+
+        print(property["link"] + "\n" + property["address"] + "\n" + property["price"] + "\n" + property["website"])
+
+        #for attr in property["attr"]:
+        #    print(attr)
 
         print("\n")
 
-    showResults(results)'''
+    #checkLastResult.updateLast(newest_prop_Daft["link"], newest_prop_Daft["website"])
+    #if newest_prop_stored_Rent:
+        #checkLastResult.updateLast(newest_prop_Rent["link"], newest_prop_Rent["website"])
+
+    '''showResults(results)'''
 
 
 def clearScreen():
